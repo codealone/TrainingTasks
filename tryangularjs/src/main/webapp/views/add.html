@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Add an employee
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="controller1.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="add">
+
+<div>
+
+Id : <input ng-model="id" /><br/><br/>
+
+Firstname : <input ng-model="firstname" /><br/><br/>
+
+Lastname : <input ng-model="lastname" /><br/><br/>
+
+Email : <input ng-model="email" /><br/><br/>
+
+<input type="button" value="Send" ng-click="postdata(id, firstname, lastname, email)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p><code>stat={{stat}}</code></p>
+<p>Query Performed : {{stat}}</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+<div ng-switch="stat">
+	<div ng-switch-when="true">
+	<h1>Your Query is Successfully completed</h1>
+	</div>
+	<div ng-switch-when="false">
+	<h1>Your Query failed. Possible reason may be that Id may already exists.</h1>
+	</div>
+	<div ng-switch-default>
+	<h1>Incorrect Request.Possible reasons may be: </h1>
+	<ol>
+	  <li>Invalid ID</li>
+      <li>Invalid First Name</li>
+      <li>Invalid Last Name</li>
+      <li>Invalid Email ID</li>
+      <li>Rest Service may not be started</li>
+      </ol>
+	</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="controller1.js"></script>
+<!-- <script src="controller2.js"></script>
+<script src="controller3.js"></script>
+<script src="controller4.js"></script> -->
+	<title>
+		Welcome to Employee Management Portal
+	</title>
+</head>
+<body ng-app="">
+ <form>
+  Select the action:<br>
+  <input type="radio" ng-model="myVar" value="Add">Add an Employee<br>
+  <input type="radio" ng-model="myVar" value="edit">Edit an Employee<br>
+  <input type="radio" ng-model="myVar" value="delete">Delete an Employee<br>
+  <input type="radio" ng-model="myVar" value="list">List all Employees<br>
+</form>
+
+<div ng-switch="myVar">
+  <div ng-switch-when="Add">
+     <div ng-app="myApp" ng-controller="add">
+
+<div>
+
+Id : <input ng-model="id" /><br/><br/>
+
+Firstname : <input ng-model="firstname" /><br/><br/>
+
+Lastname : <input ng-model="lastname" /><br/><br/>
+
+Email : <input ng-model="email" /><br/><br/>
+
+<input type="button" value="Send" ng-click="postdata1(id, firstname, lastname, email)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p><code>stat={{stat}}</code></p>
+<p>Query Performed : {{stat}}</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+<div ng-switch="stat">
+	<div ng-switch-when="true">
+	<h1>Your Query is Successfully completed</h1>
+	</div>
+	<div ng-switch-when="false">
+	<h1>Your Query failed. Possible reason may be that Id may already exists.</h1>
+	</div>
+	<div ng-switch-default>
+	<h1>Incorrect Request.Possible reasons may be: </h1>
+	<ol>
+      <li>Invalid First Name</li>
+      <li>Invalid Last Name</li>
+      <li>Invalid Email ID</li>
+      <li>Rest Service may not be started</li>
+      </ol>
+	</div>
+</div>
+
+</div>
+	<form action="index1.html"> 
+		<input type="submit" value="Home Page">
+	</form>
+	
+  </div>
+  
+  <div ng-switch-when="edit">
+     <h1>Edit an Employee</h1>
+     <div ng-app="myApp" ng-controller="edit">
+
+<div>
+
+Id : <input ng-model="id" /><br/><br/>
+
+Firstname : <input ng-model="firstname" /><br/><br/>
+
+Lastname : <input ng-model="lastname" /><br/><br/>
+
+Email : <input ng-model="email" /><br/><br/>
+
+<input type="button" value="Send" ng-click="postdata(id, firstname, lastname, email)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p><code>stat={{stat}}</code></p>
+<p>Query Performed : {{stat}}</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+<div ng-switch="stat">
+	<div ng-switch-when="true">
+	<h1>Your Query is Successfully completed</h1>
+	</div>
+	<div ng-switch-when="false">
+	<h1>Your Query failed. Possible reason may be that Id may not exists.</h1>
+	</div>
+	<div ng-switch-default>
+	<h1>Incorrect Request.Possible reasons may be: </h1>
+	<ol>
+      <li>Invalid First Name</li>
+      <li>Invalid Last Name</li>
+      <li>Invalid Email ID</li>
+      <li>Rest Service may not be started</li>
+      </ol>
+	</div>
+</div>
+
+</div>
+		<form action="index1.html"> 
+		<input type="submit" value="Home Page">
+	</form>
+  </div>
+  
+  <div ng-switch-when="delete">
+     <h1>Delete an Employee</h1>
+     <div ng-app="myApp" ng-controller="delete">
+
+<div>
+
+Id : <input ng-model="id" /><br/><br/>
+
+<input type="button" value="Send" ng-click="postdata(id)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p><code>stat={{stat}}</code></p>
+<p>Query Performed : {{stat}}</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+<div ng-switch="stat">
+	<div ng-switch-when="true">
+	<h1>Your Query is Successfully completed</h1>
+	</div>
+	<div ng-switch-when="false">
+	<h1>Your Query failed. Possible reason may be that Id may not exists.</h1>
+	</div>
+	<div ng-switch-default>
+	<h1>Incorrect Request.Possible reasons may be: </h1>
+	<ol>
+      <li>Invalid First Name</li>
+      <li>Invalid Last Name</li>
+      <li>Invalid Email ID</li>
+      <li>Rest Service may not be started</li>
+      </ol>
+	</div>
+</div>
+
+</div>
+		<form action="index1.html"> 
+		<input type="submit" value="Home Page">
+	</form>
+  </div>
+  
+    <div ng-switch-when="list">
+     <h1>List all Employees</h1>
+     <div ng-app="myApp" ng-controller="list">
+
+<div>
+
+offset : <input ng-model="offset" /><br/><br/>
+
+limit : <input ng-model="limit" /><br/><br/>
+
+<input type="button" value="Send" ng-click="postdata(offset, limit)" /> <br/><br/>
+</div>
+<p>Output Message : {{msg}}</p>
+<p>Data Received:
+<table>
+	<tr>
+	<th>ID</th>
+	<th>First Name</th>
+	<th>Last Name</th>				
+	<th>Email</th>
+	</tr>
+	<tr ng-repeat="employee in employees">
+	<td>{{employee.id}}</td>
+	<td>{{employee.firstname}}</td>
+	<td>{{employee.lastname}}</td>
+	<td>{{employee.email}}</td>
+</table>
+</p>
+<p>StatusCode: {{statusval}}</p>
+<p>Status: {{statustext}}</p>
+<p>Response Headers: {{headers}}</p>
+</div>
+		<form action="index1.html"> 
+		<input type="submit" value="Home Page">
+	</form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta chrset="UTF 8">
+    <title>Event Registration</title>
+</head>
+<body>
+
+<script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+<script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+<script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    var app = angular.module('DemoApp',[]);
+    
+    app.directive('employee',function(){
+        return {
+        	restrict : 'E',
+        	require: '?ngModel',
+        	 scope: {
+		            id : '@',
+		            firstname :'@',
+		            lastname : '@',
+		            email : '@'
+		        },
+			template: '<div> Id <input type="text" ng-model="id"><br><br> Fname <input type="text" ng-model="firstname"><br><br>Lname <input type="text" ng-model="lastname"><br><br>Email <input type="text" ng-model="email"><br><br></div>'
+        	link: function(scope,element,attributes,ngModel){
+        			console.log(scope.id);
+        			console.log(attributes.id);
+        		}
+        };
+        
+        /*app.controller('add',['$scope', function($scope.employee){
+        	$scope.id = null;
+        	$scope.firstname = null;
+        	$scope.lastname = null;
+        	$scope.email = null;
+        	$scope.postdata = function (employee) {
+        		$scope.id=employee.Id;
+        		$scope.firstname=employee.Fname;
+        		$scope.lastname=employee.Lname;
+        		$scope.email=employee.Email;
+        	});*/
+    });
+
+</script>
+
+<h1>Add an Employee</h1>
+
+<div ng-app="DemoApp">
+    <employee></employee>
+    <input type="button" value="Add" ng-click="postcard(employee)"><br><br>
+	<!-- <div employee id="ID"></div> -->
+</div>
+ <div ng-app="DemoApp" ng-controller="add">
+	<p>ID:{{id}}<br>
+	<p>First Name:{{firstname}}<br>
+	<p>Last Name:{{lastname}}<br>
+	<p>Email:{{email}}<br>	
+	</div> 
+</body>
+</html>
